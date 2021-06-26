@@ -46,8 +46,15 @@ public class BootStrapData implements CommandLineRunner {
 
         Publisher oreilly = new Publisher("O'Reilly","123 ABC St","Seattle","WA", "98121");
         publisherRepository.save(oreilly);
+
+        abc.setPublisher(oreilly);
+        oreilly.getBooks().add(abc);
+        noEJB.setPublisher(oreilly);
+        oreilly.getBooks().add(noEJB);
+        publisherRepository.save(oreilly);
         System.out.println("No. of publishers: "+publisherRepository.count());
         System.out.println("Publisher info: "+publisherRepository.findAll());
+        System.out.println("Publisher info: "+oreilly.getBooks().size());
 
     }
 }
